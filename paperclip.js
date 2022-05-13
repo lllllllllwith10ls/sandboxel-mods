@@ -8,12 +8,55 @@ elements.paperclip = {
 	conduct: 0.47,
 	hardness: 0.4,
 	properties: {
-		link1x: -1,
-		link1y: -1,
-		link2x: -1,
-		link2y: -1
+		link1: null,
+		link2: -1
 	},
 	tick: function(pixel) {
+		
+		if (Math.random() < 0.01) {
+			let dx = Math.floor(Math.random() * 3) - 1;
+			let dy = Math.floor(Math.random() * 3) - 1;
+			if((dx !== 0 & dy !== 0) && !isEmpty(pixel.x+dx, pixel.y+dy, true))
+			{
+				var adjpixel = pixelMap[pixel.x+dx][pixel.y+dy];
+				if (adjpixel.element === "paperclip") {
+					if (Math.random() < 0.5 && link1 === null) {
+						pixel.link1 = adjpixel;
+						adjpixel.link1 = pixel;
+					} else if (link2 === null) {
+						pixel.link2 = adjpixel;
+						adjpixel.link2 = pixel;
+					}
+				}
+			}
+		}
+		let prevPosX = pixel.x;
+		let prevPosY = pixel.y;
 		behaviors.POWDER(pixel);
+		let posX = pixel.x;
+		let posY = pixel.y;
+		if (Math.random() < 0.5) {
+			var adjpixel = pixel.link1;
+			if (adjpixel.element === "paperclip") {
+				if(!tryMove(adjpixel, prevPosX, prevPosY))
+				{
+					pixel.link1 = null;
+					adjpixel.link1 = null;
+				}
+			} else {
+				pixel.link1 = null;
+			}
+		} else {
+			var adjpixel = pixel.link2;
+			if (adjpixel.element === "paperclip") {
+				if(!tryMove(adjpixel, prevPosX, prevPosY))
+				{
+					pixel.link2 = null;
+					adjpixel.link2 = null;
+				}
+			} else {
+				pixel.link2 = null;
+			}
+		} 
 	}
 }
