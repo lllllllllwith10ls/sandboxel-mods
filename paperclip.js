@@ -9,7 +9,7 @@ elements.paperclip = {
 	hardness: 0.4,
 	properties: {
 		link1: null,
-		link2: -1
+		link2: null
 	},
 	tick: function(pixel) {
 		
