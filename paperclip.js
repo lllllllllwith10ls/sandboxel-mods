@@ -14,6 +14,6 @@ elements.paperclip = {
 		link2y: -1
 	},
 	tick: function(pixel) {
-		behaviors.POWDER();
+		behaviors.POWDER(this);
 	}
 }
