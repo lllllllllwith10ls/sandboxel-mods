@@ -82,7 +82,7 @@ function recursiveMove(pixel,x,y,left,iters) {
 	} else {
 		var adjpixel = pixel.link2;
 		if (adjpixel !== null && adjpixel.element === "paperclip") {
-			if(!tryMove(adjpixel, prevPosX, prevPosY,!left))
+			if(!recursiveMove(adjpixel, prevPosX, prevPosY,!left))
 			{
 				pixel.link2 = null;
 				adjpixel.link2 = null;
