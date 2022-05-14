@@ -33,11 +33,9 @@ elements.paperclip = {
 		let prevPosX = pixel.x;
 		let prevPosY = pixel.y;
 		behaviors.POWDER(pixel);
-		let posX = pixel.x;
-		let posY = pixel.y;
 		if (Math.random() < 0.5) {
 			var adjpixel = pixel.link1;
-			if (adjpixel.element === "paperclip") {
+			if (adjpixel !== null && adjpixel.element !== "paperclip") {
 				if(!tryMove(adjpixel, prevPosX, prevPosY))
 				{
 					pixel.link1 = null;
@@ -48,7 +46,7 @@ elements.paperclip = {
 			}
 		} else {
 			var adjpixel = pixel.link2;
-			if (adjpixel.element === "paperclip") {
+			if (adjpixel !== null && adjpixel.element !== "paperclip") {
 				if(!tryMove(adjpixel, prevPosX, prevPosY))
 				{
 					pixel.link2 = null;
@@ -59,4 +57,31 @@ elements.paperclip = {
 			}
 		} 
 	}
+}
+function recursiveMove(pixel,x,y,left) {
+	let prevPosX = pixel.x;
+	let prevPosY = pixel.y;
+	if(left) {
+	        var adjpixel = pixel.link1;
+	        if (adjpixel !== null && adjpixel.element !== "paperclip") {
+			if(!tryMove(adjpixel, prevPosX, prevPosY,left))
+			{
+				pixel.link1 = null;
+				adjpixel.link1 = null;
+			}
+		} else {
+			pixel.link1 = null;
+		}
+	} else {
+		var adjpixel = pixel.link2;
+		if (adjpixel !== null && adjpixel.element !== "paperclip") {
+			if(!tryMove(adjpixel, prevPosX, prevPosY,left))
+			{
+				pixel.link2 = null;
+				adjpixel.link2 = null;
+			}
+		} else {
+			pixel.link2 = null;
+		}
+	} 
 }
