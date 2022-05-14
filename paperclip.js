@@ -16,7 +16,7 @@ elements.paperclip = {
 		if (Math.random() < 0.01) {
 			let dx = Math.floor(Math.random() * 3) - 1;
 			let dy = Math.floor(Math.random() * 3) - 1;
-			if((dx !== 0 & dy !== 0) && !isEmpty(pixel.x+dx, pixel.y+dy, true))
+			if(!(dx === 0 || dy === 0) && !isEmpty(pixel.x+dx, pixel.y+dy, true))
 			{
 				var adjpixel = pixelMap[pixel.x+dx][pixel.y+dy];
 				if (adjpixel.element === "paperclip") {
@@ -35,7 +35,7 @@ elements.paperclip = {
 		behaviors.POWDER(pixel);
 		if (Math.random() < 0.5) {
 			var adjpixel = pixel.link1;
-			if (adjpixel !== null && adjpixel.element !== "paperclip") {
+			if (adjpixel !== null && adjpixel.element === "paperclip") {
 				if(!tryMove(adjpixel, prevPosX, prevPosY))
 				{
 					pixel.link1 = null;
@@ -46,7 +46,7 @@ elements.paperclip = {
 			}
 		} else {
 			var adjpixel = pixel.link2;
-			if (adjpixel !== null && adjpixel.element !== "paperclip") {
+			if (adjpixel !== null && adjpixel.element === "paperclip") {
 				if(!tryMove(adjpixel, prevPosX, prevPosY))
 				{
 					pixel.link2 = null;
@@ -63,7 +63,7 @@ function recursiveMove(pixel,x,y,left) {
 	let prevPosY = pixel.y;
 	if(left) {
 	        var adjpixel = pixel.link1;
-	        if (adjpixel !== null && adjpixel.element !== "paperclip") {
+	        if (adjpixel !== null && adjpixel.element === "paperclip") {
 			if(!tryMove(adjpixel, prevPosX, prevPosY,left))
 			{
 				pixel.link1 = null;
