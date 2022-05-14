@@ -20,10 +20,10 @@ elements.paperclip = {
 			{
 				var adjpixel = pixelMap[pixel.x+dx][pixel.y+dy];
 				if (adjpixel.element === "paperclip") {
-					if (Math.random() < 0.5 && link1 === null) {
+					if (Math.random() < 0.5 && pixel.link1 === null && adjpixel.link1 === null) {
 						pixel.link1 = adjpixel;
 						adjpixel.link1 = pixel;
-					} else if (link2 === null) {
+					} else if (pixel.link2 === null && adjpixel.link2 === null) {
 						pixel.link2 = adjpixel;
 						adjpixel.link2 = pixel;
 					}
