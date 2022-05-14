@@ -74,7 +74,7 @@ function recursiveMove(pixel,x,y,left) {
 		}
 	} else {
 		var adjpixel = pixel.link2;
-		if (adjpixel !== null && adjpixel.element !== "paperclip") {
+		if (adjpixel !== null && adjpixel.element === "paperclip") {
 			if(!tryMove(adjpixel, prevPosX, prevPosY,left))
 			{
 				pixel.link2 = null;
