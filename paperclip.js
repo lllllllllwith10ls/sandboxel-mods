@@ -33,6 +33,16 @@ elements.paperclip = {
 		let prevPosX = pixel.x;
 		let prevPosY = pixel.y;
 		behaviors.POWDER(pixel);
+		var adjpixel = pixel.link1;
+		if (!(adjpixel !== null && adjpixel.element === "paperclip")) {
+			pixel.link1 = null;
+		}
+		
+		var adjpixel = pixel.link2;
+		if (!(adjpixel !== null && adjpixel.element === "paperclip")) {
+			pixel.link2 = null;
+		}
+		
 		if(!(prevPosX === pixel.x && prevPosY === pixel.Y))
 		{
 			if (Math.random() < 0.5) {
