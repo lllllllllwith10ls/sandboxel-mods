@@ -38,7 +38,7 @@ elements.paperclip = {
 		if (Math.random() < 0.5) {
 			var adjpixel = pixel.link1;
 			if (adjpixel !== null && adjpixel.element === "paperclip") {
-				if(!recursiveMove(adjpixel, prevPosX, prevPosY,true))
+				if(!recursiveMove(adjpixel, prevPosX, prevPosY,true,0))
 				{
 					pixel.link1 = null;
 					adjpixel.link1 = null;
@@ -49,7 +49,7 @@ elements.paperclip = {
 		} else {
 			var adjpixel = pixel.link2;
 			if (adjpixel !== null && adjpixel.element === "paperclip") {
-				if(!recursiveMove(adjpixel, prevPosX, prevPosY,false))
+				if(!recursiveMove(adjpixel, prevPosX, prevPosY,false,0))
 				{
 					pixel.link2 = null;
 					adjpixel.link2 = null;
@@ -60,17 +60,17 @@ elements.paperclip = {
 		} 
 	}
 }
-function recursiveMove(pixel,x,y,left) {
+function recursiveMove(pixel,x,y,left,iters) {
 	let prevPosX = pixel.x;
 	let prevPosY = pixel.y;
-	if(!tryMove(pixel,x,y)) {
+	if(iters > 50 || !tryMove(pixel,x,y)) {
                 return false;
         }
 
-        if(left) {
+        if(!left) {
 	        var adjpixel = pixel.link1;
 	        if (adjpixel !== null && adjpixel.element === "paperclip") {
-			if(!recursiveMove(adjpixel, prevPosX, prevPosY,left))
+			if(!recursiveMove(adjpixel, prevPosX, prevPosY,!left,iters+1))
 			{
 				pixel.link1 = null;
 				adjpixel.link1 = null;
@@ -82,7 +82,7 @@ function recursiveMove(pixel,x,y,left) {
 	} else {
 		var adjpixel = pixel.link2;
 		if (adjpixel !== null && adjpixel.element === "paperclip") {
-			if(!tryMove(adjpixel, prevPosX, prevPosY,left))
+			if(!tryMove(adjpixel, prevPosX, prevPosY,!left))
 			{
 				pixel.link2 = null;
 				adjpixel.link2 = null;
