@@ -13,7 +13,7 @@ elements.paperclip = {
 	},
 	tick: function(pixel) {
 		
-		if (Math.random() < 0.1) {
+		if (Math.random() < 1) {
 			let dx = Math.floor(Math.random() * 3) - 1;
 			let dy = Math.floor(Math.random() * 3) - 1;
 			if(!(dx === 0 || dy === 0) && !isEmpty(pixel.x+dx, pixel.y+dy, true))
@@ -33,8 +33,8 @@ elements.paperclip = {
 		let prevPosX = pixel.x;
 		let prevPosY = pixel.y;
 		behaviors.POWDER(pixel);
-                if(prevPosX === pixel.x && prevPosY == pixel.Y)
-                       return;
+		if(prevPosX === pixel.x && prevPosY === pixel.Y)
+			   return;
 		if (Math.random() < 0.5) {
 			var adjpixel = pixel.link1;
 			if (adjpixel !== null && adjpixel.element === "paperclip") {
