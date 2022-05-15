@@ -36,11 +36,13 @@ elements.paperclip = {
 		var adjpixel = pixel.link1;
 		if (!(adjpixel !== null && adjpixel.element === "paperclip" && currentPixels.includes(adjpixel))) {
 			pixel.link1 = null;
+			adjpixel.link1 = null;
 		}
 		
 		var adjpixel = pixel.link2;
 		if (!(adjpixel !== null && adjpixel.element === "paperclip" && currentPixels.includes(adjpixel))) {
 			pixel.link2 = null;
+			adjpixel.link1 = null;
 		}
 		
 		if(!(prevPosX === pixel.x && prevPosY === pixel.Y))
