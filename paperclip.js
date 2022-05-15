@@ -18,7 +18,7 @@ elements.paperclip = {
 			let dy = Math.floor(Math.random() * 3) - 1;
 			if(!(dx === 0 || dy === 0) && !isEmpty(pixel.x+dx, pixel.y+dy, true))
 			{
-				var adjpixel = pixelMap[pixel.x+dx][pixel.y+dy];
+				let adjpixel = pixelMap[pixel.x+dx][pixel.y+dy];
 				if (adjpixel.element === "paperclip") {
 					if (Math.random() < 0.5 && pixel.link1 === null && adjpixel.link1 === null) {
 						pixel.link1 = adjpixel;
@@ -33,7 +33,7 @@ elements.paperclip = {
 		let prevPosX = pixel.x;
 		let prevPosY = pixel.y;
 		behaviors.POWDER(pixel);
-		var adjpixel = pixel.link1;
+		let adjpixel = pixel.link1;
 		if (!(adjpixel !== null && adjpixel.element === "paperclip" && currentPixels.includes(adjpixel))) {
 			pixel.link1 = null;
 			if (adjpixel !== null && !currentPixels.includes(adjpixel)) {
@@ -41,7 +41,7 @@ elements.paperclip = {
 			}
 		}
 		
-		var adjpixel = pixel.link2;
+		adjpixel = pixel.link2;
 		if (!(adjpixel !== null && adjpixel.element === "paperclip" && currentPixels.includes(adjpixel))) {
 			pixel.link2 = null;
 			if (adjpixel !== null && !currentPixels.includes(adjpixel)) {
@@ -52,7 +52,7 @@ elements.paperclip = {
 		if(!(prevPosX === pixel.x && prevPosY === pixel.Y))
 		{
 			if (Math.random() < 0.5) {
-				var adjpixel = pixel.link1;
+				adjpixel = pixel.link1;
 				if (adjpixel !== null && adjpixel.element === "paperclip" && currentPixels.includes(adjpixel)) {
 					if(!recursiveMove(adjpixel, prevPosX, prevPosY,true,0))
 					{
@@ -63,7 +63,7 @@ elements.paperclip = {
 					pixel.link1 = null;
 				}
 			} else {
-				var adjpixel = pixel.link2;
+				adjpixel = pixel.link2;
 				if (adjpixel !== null && adjpixel.element === "paperclip" && currentPixels.includes(adjpixel)) {
 					if(!recursiveMove(adjpixel, prevPosX, prevPosY,false,0))
 					{
@@ -86,7 +86,7 @@ function recursiveMove(pixel,x,y,left,iters) {
 	if(!(prevPosX === pixel.x && prevPosY === pixel.Y))
 	{	
 		if(!left) {
-			var adjpixel = pixel.link1;
+			let adjpixel = pixel.link1;
 			if (adjpixel !== null && adjpixel.element === "paperclip" && currentPixels.includes(adjpixel)) {
 				if(!recursiveMove(adjpixel, prevPosX, prevPosY,!left,iters+1))
 				{
@@ -98,7 +98,7 @@ function recursiveMove(pixel,x,y,left,iters) {
 				pixel.link1 = null;
 			}
 		} else {
-			var adjpixel = pixel.link2;
+			let adjpixel = pixel.link2;
 			if (adjpixel !== null && adjpixel.element === "paperclip" && currentPixels.includes(adjpixel)) {
 				if(!recursiveMove(adjpixel, prevPosX, prevPosY,!left,iters+1))
 				{
