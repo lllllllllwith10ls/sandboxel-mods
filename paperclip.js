@@ -13,7 +13,7 @@ elements.paperclip = {
 	},
 	tick: function(pixel) {
 		
-		if (Math.random() < 1) {
+		for(let i = 0; i < 4; i++) {
 			let dx = Math.floor(Math.random() * 3) - 1;
 			let dy = Math.floor(Math.random() * 3) - 1;
 			if(!(dx === 0 || dy === 0) && !isEmpty(pixel.x+dx, pixel.y+dy, true))
