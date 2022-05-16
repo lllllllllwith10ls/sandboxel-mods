@@ -166,50 +166,53 @@ elements.paper = {
 			}
 			pixel.linked = true;
 		}
-		let prevPosX = pixel.x;
-		let prevPosY = pixel.y;
-		behaviors.POWDER(pixel);
-		let adjpixel = pixel.link1;
-		if (!(adjpixel !== null && (adjpixel.element === "paperclip" || adjpixel.element === "paper") && currentPixels.includes(adjpixel))) {
-			pixel.link1 = null;
-			if (adjpixel !== null && !currentPixels.includes(adjpixel)) {
-				delete pixelMap[adjpixel.x][adjpixel.y];
-			}
-		}
-		
-		adjpixel = pixel.link2;
-		if (!(adjpixel !== null && (adjpixel.element === "paperclip" || adjpixel.element === "paper") && currentPixels.includes(adjpixel))) {
-			pixel.link2 = null;
-			if (adjpixel !== null && !currentPixels.includes(adjpixel)) {
-				delete pixelMap[adjpixel.x][adjpixel.y];
-			}
-		}
-		
-		if(!(prevPosX === pixel.x && prevPosY === pixel.Y))
+		else
 		{
-			if (Math.random() < 0.5) {
-				adjpixel = pixel.link1;
-				if (adjpixel !== null && (adjpixel.element === "paperclip" || adjpixel.element === "paper") && currentPixels.includes(adjpixel)) {
-					if(!recursiveMove(adjpixel, prevPosX, prevPosY,true,0))
-					{
-						pixel.link1 = null;
-						adjpixel.link1 = null;
-					}
-				} else {
-					pixel.link1 = null;
-				}
-			} else {
-				adjpixel = pixel.link2;
-				if (adjpixel !== null && (adjpixel.element === "paperclip" || adjpixel.element === "paper") && currentPixels.includes(adjpixel)) {
-					if(!recursiveMove(adjpixel, prevPosX, prevPosY,false,0))
-					{
-						pixel.link2 = null;
-						adjpixel.link2 = null;
-					}
-				} else {
-					pixel.link2 = null;
+			let prevPosX = pixel.x;
+			let prevPosY = pixel.y;
+			behaviors.POWDER(pixel);
+			let adjpixel = pixel.link1;
+			if (!(adjpixel !== null && (adjpixel.element === "paperclip" || adjpixel.element === "paper") && currentPixels.includes(adjpixel))) {
+				pixel.link1 = null;
+				if (adjpixel !== null && !currentPixels.includes(adjpixel)) {
+					delete pixelMap[adjpixel.x][adjpixel.y];
 				}
 			}
-		}			
+			
+			adjpixel = pixel.link2;
+			if (!(adjpixel !== null && (adjpixel.element === "paperclip" || adjpixel.element === "paper") && currentPixels.includes(adjpixel))) {
+				pixel.link2 = null;
+				if (adjpixel !== null && !currentPixels.includes(adjpixel)) {
+					delete pixelMap[adjpixel.x][adjpixel.y];
+				}
+			}
+			
+			if(!(prevPosX === pixel.x && prevPosY === pixel.Y))
+			{
+				if (Math.random() < 0.5) {
+					adjpixel = pixel.link1;
+					if (adjpixel !== null && (adjpixel.element === "paperclip" || adjpixel.element === "paper") && currentPixels.includes(adjpixel)) {
+						if(!recursiveMove(adjpixel, prevPosX, prevPosY,true,0))
+						{
+							pixel.link1 = null;
+							adjpixel.link1 = null;
+						}
+					} else {
+						pixel.link1 = null;
+					}
+				} else {
+					adjpixel = pixel.link2;
+					if (adjpixel !== null && (adjpixel.element === "paperclip" || adjpixel.element === "paper") && currentPixels.includes(adjpixel)) {
+						if(!recursiveMove(adjpixel, prevPosX, prevPosY,false,0))
+						{
+							pixel.link2 = null;
+							adjpixel.link2 = null;
+						}
+					} else {
+						pixel.link2 = null;
+					}
+				}
+			}			
+		}
 	}
 }
