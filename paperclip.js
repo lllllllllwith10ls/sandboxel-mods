@@ -77,7 +77,7 @@ elements.paperclip = {
 		}			
 	}
 }
-function recursiveMove(pixel,x,y,left,iters) {
+function recursiveMove(pixel,x,y,left,iters,disconnect=false) {
 	let prevPosX = pixel.x;
 	let prevPosY = pixel.y;
 	if(iters > 50 || !tryMove(pixel,x,y)) {
@@ -88,7 +88,7 @@ function recursiveMove(pixel,x,y,left,iters) {
 		if(!left) {
 			let adjpixel = pixel.link1;
 			if (adjpixel !== null && (adjpixel.element === "paperclip" || adjpixel.element === "paper") && currentPixels.includes(adjpixel)) {
-				if(!recursiveMove(adjpixel, prevPosX, prevPosY,!left,iters+1))
+				if(!recursiveMove(adjpixel, prevPosX, prevPosY,!left,iters+1) && disconnect)
 				{
 					pixel.link1 = null;
 					adjpixel.link1 = null;
@@ -100,7 +100,7 @@ function recursiveMove(pixel,x,y,left,iters) {
 		} else {
 			let adjpixel = pixel.link2;
 			if (adjpixel !== null && (adjpixel.element === "paperclip" || adjpixel.element === "paper") && currentPixels.includes(adjpixel)) {
-				if(!recursiveMove(adjpixel, prevPosX, prevPosY,!left,iters+1))
+				if(!recursiveMove(adjpixel, prevPosX, prevPosY,!left,iters+1) && disconnect)
 				{
 					pixel.link2 = null;
 					adjpixel.link2 = null;
@@ -192,22 +192,14 @@ elements.paper = {
 				if (Math.random() < 0.5) {
 					adjpixel = pixel.link1;
 					if (adjpixel !== null && (adjpixel.element === "paperclip" || adjpixel.element === "paper") && currentPixels.includes(adjpixel)) {
-						if(!recursiveMove(adjpixel, prevPosX, prevPosY,true,0))
-						{
-							pixel.link1 = null;
-							adjpixel.link1 = null;
-						}
+						recursiveMove(adjpixel, prevPosX, prevPosY,true,0);
 					} else {
 						pixel.link1 = null;
 					}
 				} else {
 					adjpixel = pixel.link2;
 					if (adjpixel !== null && (adjpixel.element === "paperclip" || adjpixel.element === "paper") && currentPixels.includes(adjpixel)) {
-						if(!recursiveMove(adjpixel, prevPosX, prevPosY,false,0))
-						{
-							pixel.link2 = null;
-							adjpixel.link2 = null;
-						}
+						recursiveMove(adjpixel, prevPosX, prevPosY,false,0);
 					} else {
 						pixel.link2 = null;
 					}
