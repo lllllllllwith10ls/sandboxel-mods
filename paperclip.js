@@ -16,7 +16,7 @@ elements.paperclip = {
 		for(let i = 0; i < 4; i++) {
 			let dx = Math.floor(Math.random() * 3) - 1;
 			let dy = Math.floor(Math.random() * 3) - 1;
-			if(!(dx === 0 || dy === 0) && !isEmpty(pixel.x+dx, pixel.y+dy, true))
+			if(!(dx === 0 && dy === 0) && !isEmpty(pixel.x+dx, pixel.y+dy, true))
 			{
 				let adjpixel = pixelMap[pixel.x+dx][pixel.y+dy];
 				if (adjpixel.element === "paperclip" || adjpixel.element === "paper") {
@@ -135,7 +135,7 @@ elements.paper = {
 			for(let i = -1; i <= 1; i++) {
 				let dx = i;
 				let dy = 0;
-				if(!(dx === 0 || dy === 0) && !isEmpty(pixel.x+dx, pixel.y+dy, true))
+				if(!(dx === 0 && dy === 0) && !isEmpty(pixel.x+dx, pixel.y+dy, true))
 				{
 					let adjpixel = pixelMap[pixel.x+dx][pixel.y+dy];
 					if (adjpixel.element === "paper") {
