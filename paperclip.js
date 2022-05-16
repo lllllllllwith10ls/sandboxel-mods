@@ -114,7 +114,7 @@ function recursiveMove(pixel,x,y,left,iters) {
 }
 
 elements.paper = {
-	color: "#f7f7f7",
+	color: "#f0f0f0",
 	tempHigh: 400,
 	reactions: {
 		"water": { "elem1":"cellulose", "elem2":null },
