@@ -154,12 +154,10 @@ elements.paper = {
 				{
 					let adjpixel = pixelMap[pixel.x+dx][pixel.y+dy];
 					if (adjpixel.element === "paper") {
-						if (pixel.link1 === null && adjpixel.link1 === null && 
-						((pixel.x%2 === 0 && i === -1) || (pixel.x%2 === 1 && i === 1))) {
+						if ((pixel.x%2 === 0 && i === -1) || (pixel.x%2 === 1 && i === 1)) {
 							pixel.link1 = adjpixel;
 							adjpixel.link1 = pixel;
-						} else if (pixel.link2 === null && adjpixel.link2 === null && 
-						((pixel.x%2 === 1 && i === -1) || (pixel.x%2 === 0 && i === 1))) {
+						} else if ((pixel.x%2 === 1 && i === -1) || (pixel.x%2 === 0 && i === 1)) {
 							pixel.link2 = adjpixel;
 							adjpixel.link2 = pixel;
 						}
