@@ -144,7 +144,7 @@ elements.paper = {
 							pixel.link1 = adjpixel;
 							adjpixel.link1 = pixel;
 						} else if (pixel.link2 === null && adjpixel.link2 === null && 
-						((pixel.x%2 === 1 && i === -1) || (pixel.x%2 === 0 && i === 1)) {
+						((pixel.x%2 === 1 && i === -1) || (pixel.x%2 === 0 && i === 1))) {
 							pixel.link2 = adjpixel;
 							adjpixel.link2 = pixel;
 						}
