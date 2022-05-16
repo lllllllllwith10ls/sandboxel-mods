@@ -37,7 +37,7 @@ elements.paperclip = {
 		if (!(adjpixel !== null && adjpixel.element === "paperclip" && currentPixels.includes(adjpixel))) {
 			pixel.link1 = null;
 			if (adjpixel !== null && !currentPixels.includes(adjpixel)) {
-				deletePixel pixelMap[adjpixel.x][adjpixel.y];
+				delete pixelMap[adjpixel.x][adjpixel.y];
 			}
 		}
 		
@@ -45,7 +45,7 @@ elements.paperclip = {
 		if (!(adjpixel !== null && adjpixel.element === "paperclip" && currentPixels.includes(adjpixel))) {
 			pixel.link2 = null;
 			if (adjpixel !== null && !currentPixels.includes(adjpixel)) {
-				deletePixel pixelMap[adjpixel.x][adjpixel.y];
+				delete pixelMap[adjpixel.x][adjpixel.y];
 			}
 		}
 		
